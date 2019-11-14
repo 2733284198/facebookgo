@@ -1,24 +1,24 @@
 httpdown [![Build Status](https://secure.travis-ci.org/facebookgo/httpdown.png)](https://travis-ci.org/facebookgo/httpdown)
 ========
 
-Documentation: https://godoc.org/github.com/facebookgo/httpdown
+Documentation: https://godoc.org/github.com/yanjunhui/facebookgo/httpdown
 
 Package httpdown provides a library that makes it easy to build a HTTP server
 that can be shutdown gracefully (that is, without dropping any connections).
 
 If you want graceful restart and not just graceful shutdown, look at the
-[grace](https://github.com/facebookgo/grace) package which uses this package
+[grace](https://github.com/yanjunhui/facebookgo/grace) package which uses this package
 underneath but also provides graceful restart.
 
 Usage
 -----
 
 Demo HTTP Server with graceful termination:
-https://github.com/facebookgo/httpdown/blob/master/httpdown_example/main.go
+https://github.com/yanjunhui/facebookgo/httpdown/blob/master/httpdown_example/main.go
 
 1. Install the demo application
 
-        go get github.com/facebookgo/httpdown/httpdown_example
+        go get github.com/yanjunhui/facebookgo/httpdown/httpdown_example
 
 1. Start it in the first terminal
 

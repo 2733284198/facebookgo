@@ -13,8 +13,8 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/facebookgo/clock"
-	"github.com/facebookgo/stats"
+	"github.com/yanjunhui/facebookgo/clock"
+	"github.com/yanjunhui/facebookgo/stats"
 )
 
 const (
