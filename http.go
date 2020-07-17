@@ -1,6 +1,6 @@
 // Package gracehttp provides easy to use graceful restart
 // functionality for HTTP server.
-package gracehttp
+package facebookgo
 
 import (
 	"bytes"
@@ -13,9 +13,6 @@ import (
 	"os/signal"
 	"sync"
 	"syscall"
-
-	"github.com/facebookgo/grace/gracenet"
-	"github.com/facebookgo/httpdown"
 )
 
 var (
@@ -29,10 +26,10 @@ type option func(*app)
 // An app contains one or more servers and associated configuration.
 type app struct {
 	servers         []*http.Server
-	http            *httpdown.HTTP
-	net             *gracenet.Net
+	http            *HTTP
+	net             *Net
 	listeners       []net.Listener
-	sds             []httpdown.Server
+	sds             []Server
 	preStartProcess func() error
 	errors          chan error
 }
@@ -40,10 +37,10 @@ type app struct {
 func newApp(servers []*http.Server) *app {
 	return &app{
 		servers:   servers,
-		http:      &httpdown.HTTP{},
-		net:       &gracenet.Net{},
+		http:      &HTTP{},
+		net:       &Net{},
 		listeners: make([]net.Listener, 0, len(servers)),
-		sds:       make([]httpdown.Server, 0, len(servers)),
+		sds:       make([]Server, 0, len(servers)),
 
 		preStartProcess: func() error { return nil },
 		// 2x num servers for possible Close or Stop errors + 1 for possible
@@ -78,7 +75,7 @@ func (a *app) wait() {
 	wg.Add(len(a.sds) * 2) // Wait & Stop
 	go a.signalHandler(&wg)
 	for _, s := range a.sds {
-		go func(s httpdown.Server) {
+		go func(s Server) {
 			defer wg.Done()
 			if err := s.Wait(); err != nil {
 				a.errors <- err
@@ -90,7 +87,7 @@ func (a *app) wait() {
 
 func (a *app) term(wg *sync.WaitGroup) {
 	for _, s := range a.sds {
-		go func(s httpdown.Server) {
+		go func(s Server) {
 			defer wg.Done()
 			if err := s.Stop(); err != nil {
 				a.errors <- err

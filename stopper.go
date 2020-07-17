@@ -1,6 +1,8 @@
-package stats
+package facebookgo
 
-import "time"
+import (
+	"time"
+)
 
 // Stopper calls Client.BumpSum and Client.BumpHistogram when End'ed
 type Stopper struct {

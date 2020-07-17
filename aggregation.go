@@ -1,4 +1,4 @@
-package stats
+package facebookgo
 
 import "sort"
 

@@ -1,6 +1,8 @@
-package stats
+package facebookgo
 
-import "fmt"
+import (
+	"fmt"
+)
 
 // Type is the type of aggregation of apply
 type Type int

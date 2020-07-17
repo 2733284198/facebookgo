@@ -6,7 +6,7 @@
 // to allow using socket activation.
 //
 // BUG: Doesn't handle closing of listeners.
-package gracenet
+package facebookgo
 
 import (
 	"fmt"

@@ -1,6 +1,6 @@
 // Package stats defines a lightweight interface for collecting statistics. It
 // doesn't provide an implementation, just the shared interface.
-package stats
+package facebookgo
 
 // Client provides methods to collection statistics.
 type Client interface {

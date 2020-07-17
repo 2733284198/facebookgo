@@ -1,4 +1,4 @@
-package clock
+package facebookgo
 
 import (
 	"runtime"
